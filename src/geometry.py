@@ -41,8 +41,8 @@ def generate_cycloid_profile(
     # Discretize input angle from 0 to 2*pi
     psi = np.linspace(0, 2 * np.pi, num_points)
 
-    # Intermediate calculation angle (gamma)
-    gamma = np.arctan2(np.sin(num_teeth * psi), (pitch_radius / (eccentricity * num_pins)) - np.cos(num_teeth * psi),)
+    # modified pressure angle calculation which matches the web generator used
+    gamma = np.arctan2(-np.sin(num_teeth * psi), (pitch_radius / (eccentricity * num_pins)) - np.cos(num_teeth * psi),)
 
     # Parametric equations for epitrochoid cycloid profile
     x = (

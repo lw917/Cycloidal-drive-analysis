@@ -14,9 +14,9 @@ def run_full_analysis() -> None:
 
     # Gear Parameters (30:1 Reduction Ratio)
     num_teeth = 30
-    pitch_r = 53  # 53 mm pitch radius
-    pin_r = 0.003  # 3 mm pin radius
-    ecc = 0.75  # 0.75 mm eccentricity
+    pitch_r = 0.053  # 53 mm pitch radius
+    pin_r = 0.0015  # 3 mm pin diameter
+    ecc = 0.00075  # 0.75 mm eccentricity
     torque = 1.2  # 1.2 N*m torque load
     disc_thickness = 0.004  # 4 mm disc thickness
 
@@ -77,7 +77,7 @@ def run_full_analysis() -> None:
         label="Baseline (Uniform)",
         color="orange",
     )
-    ax2.set_title("Pin Force Distribution (15 N·m Input Torque)")
+    ax2.set_title("Pin Force Distribution (1.2 N·m Input Torque)")
     ax2.set_xlabel("Pin Index")
     ax2.set_ylabel("Normal Force (N)")
     ax2.grid(True)
