@@ -1,0 +1,1 @@
+## testing for force solvers and Hertzian stress outputs

@@ -42,10 +42,7 @@ def generate_cycloid_profile(
     psi = np.linspace(0, 2 * np.pi, num_points)
 
     # Intermediate calculation angle (gamma)
-    gamma = np.arctan2(
-        np.sin(num_teeth * psi),
-        (pitch_radius / (eccentricity * num_pins)) - np.cos(num_teeth * psi),
-    )
+    gamma = np.arctan2(np.sin(num_teeth * psi), (pitch_radius / (eccentricity * num_pins)) - np.cos(num_teeth * psi),)
 
     # Parametric equations for epitrochoid cycloid profile
     x = (

@@ -14,13 +14,13 @@ def run_full_analysis() -> None:
 
     # Gear Parameters (30:1 Reduction Ratio)
     num_teeth = 30
-    pitch_r = 0.050  # 50 mm pitch radius
-    pin_r = 0.004  # 4 mm pin radius
-    ecc = 0.0012  # 1.2 mm eccentricity
-    torque = 15.0  # 15 N*m torque load
-    disc_thickness = 0.012  # 12 mm disc thickness
+    pitch_r = 53  # 53 mm pitch radius
+    pin_r = 0.003  # 3 mm pin radius
+    ecc = 0.75  # 0.75 mm eccentricity
+    torque = 1.2  # 1.2 N*m torque load
+    disc_thickness = 0.004  # 4 mm disc thickness
 
-    # 1. Profile Geometry Generation
+    # 1. Geometry Generation
     x, y = generate_cycloid_profile(pitch_r, pin_r, ecc, num_teeth)
 
     # 2. Timing Benchmarks: Proposed (1D Root-Find) vs Baseline (Uniform)
