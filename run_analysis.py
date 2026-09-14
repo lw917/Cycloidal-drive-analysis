@@ -17,7 +17,7 @@ def run_full_analysis() -> None:
     pitch_r = 0.053/2  # 53 mm pitch radius
     pin_r = 0.0015  # 3 mm pin diameter
     ecc = 0.00075  # 0.75 mm eccentricity
-    torque = 1.2  # 1.2 N*m torque load
+    torque = 2.6  # 1.2 N*m torque load
     disc_thickness = 0.004  # 4 mm disc thickness
 
     # 1. Geometry Generation
