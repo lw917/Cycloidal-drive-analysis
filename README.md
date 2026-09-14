@@ -17,6 +17,7 @@ This repository provides an automated computational engineering workdlow for ana
 - Disc Thickness: 4mm (rotor thickness)
 
 ## Repository Structure
+```text
 Cycloidal-drive-analysis/
 ├── docs/                      # Auto-generated HTML API documentation (pdoc)
 ├── src/                       # Core analytical source code
@@ -32,3 +33,4 @@ Cycloidal-drive-analysis/
 ├── README.md                  # Project overview and instructions
 ├── requirements.txt           # Python dependency requirements
 └── run_analysis.py            # Main entry point and performance profiler
+```
