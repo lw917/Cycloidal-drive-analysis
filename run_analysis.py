@@ -6,6 +6,7 @@ import numpy as np
 from src.geometry import generate_cycloid_profile
 from src.hertzian import hertzian_contact_stress
 from src.kinematics import compute_pin_forces_baseline, compute_pin_forces_proposed
+from src.friction import estimate_output_performance, frictional_power_loss
 
 
 def run_full_analysis() -> None:
@@ -14,11 +15,16 @@ def run_full_analysis() -> None:
 
     # Gear Parameters (30:1 Reduction Ratio)
     num_teeth = 30
+    gear_ratio = 30
     pitch_r = 0.053/2  # 53 mm pitch radius
     pin_r = 0.0015  # 3 mm pin diameter
     ecc = 0.00075  # 0.75 mm eccentricity
     torque = 0.75  # 1.2 N*m torque load
     disc_thickness = 0.004  # 4 mm disc thickness
+
+    coefficient_of_friction = 0.1
+    input_speed_rpm = 300
+    assumed_sliding_speed = 0.01
 
     # 1. Geometry Generation
     x, y = generate_cycloid_profile(pitch_r, pin_r, ecc, num_teeth)
@@ -39,6 +45,18 @@ def run_full_analysis() -> None:
     peak_stress = hertzian_contact_stress(
         max_force_prop, disc_thickness, 0.015, pin_r
     )
+
+    friction_loss = frictional_power_loss(forces_proposed, coefficient_of_friction, assumed_sliding_speed)
+    performance = estimate_output_performance(torque, input_speed_rpm, gear_ratio, friction_loss)
+
+    print(f"Proposed solver time: {t_proposed:.4f} ms") 
+    print(f"Baseline solver time: {t_baseline:.4f} ms") 
+    print(f"Maximum pin force: {max_force_prop:.2f} N") 
+    print(f"Peak contact stress: {peak_stress / 1e6:.2f} MPa") 
+    print(f"Estimated friction loss: {friction_loss:.4f} W") 
+    print(f"Estimated output torque: {performance['estimated_output_torque_nm']:.2f} N*m") 
+    print(f"Estimated efficiency: {performance['estimated_efficiency'] * 100:.2f}%") 
+    print("Note: Friction results use assumed values and are not validated.")
 
     print(
         f"Proposed Non-Linear Solver Execution Time: {t_proposed:.4f} ms"
