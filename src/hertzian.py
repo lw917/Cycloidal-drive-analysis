@@ -15,13 +15,22 @@ def hertzian_contact_stress(normal_force: float, disc_thickness: float, radius_p
         float: Peak Hertzian contact pressure in Pascals
     """
 
-    if normal_force <= 0:
+    if normal_force < 0:
+        raise ValueError("normal_force must be non-negative.")
+    if normal_force == 0:
         return 0.0
+    if disc_thickness <= 0 or radius_pin <= 0 or radius_cycloid <= 0:
+        raise ValueError("Thickness and radii must be positive.")
+    if e_modulus <= 0:
+        raise ValueError("e_modulus must be positive.")
+    if not 0 <= poison_ratio < 0.5:
+        raise ValueError("poisson_ratio must be in the range [0, 0.5).")
 
-    e_effective = e_modulus / (2 * (1 - poison_ratio ** 2))
-
-    r_effective = 1 / ((1 / radius_cycloid) + (1 / radius_pin))
-
-    max_stress = np.sqrt((normal_force + e_effective) / (np.pi * disc_thickness * r_effective))
-
-    return float(max_stress)
+    # Two identical elastic materials: 1/E* = 2(1-nu^2)/E.
+    effective_modulus = e_modulus / (2.0 * (1.0 - poison_ratio**2))
+    effective_radius = 1.0 / (1.0 / radius_pin + 1.0 / radius_cycloid)
+    max_pressure = np.sqrt(
+        normal_force * effective_modulus
+        / (np.pi * disc_thickness * effective_radius)
+    )
+    return float(max_pressure)
