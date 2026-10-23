@@ -9,6 +9,8 @@ This repository provides an automated computational engineering workdlow for ana
 
 - Hertzian Stress Calculator: Calculates peak line contact stress across rotor lobes and housing pins
 
+- Friction Parameter: Introduces a friction coefficient to more accurately simulate real life gearboxes
+
 ## Technical Specifications
 - Reduction Ratio: 30:1, 30 rotor teeth, 31 housing pins
 - Pin Circle Diameter : 53mm (pitch circle radius: 26.5mm)
@@ -19,18 +21,19 @@ This repository provides an automated computational engineering workdlow for ana
 ## Repository Structure
 ```text
 Cycloidal-drive-analysis/
-├── docs/                      # Auto-generated HTML API documentation (pdoc)
-├── src/                       # Core analytical source code
+├── docs/                   # Auto-generated HTML API documentation (pdoc)
+├── src/                    # Core analytical source code
 │   ├── __init__.py
-│   ├── geometry.py            # Profile coordinate parametric equations
-│   ├── kinematics.py          # 1D root-finder & pin force distribution solvers
-│   └── hertzian.py            # Closed-form Hertzian line contact stress calculation
-├── tests/                     # Automated unit test suite
-│   ├── test_geometry.py       # Geometry bounds and undercutting assertions
-│   └── test_kinematics.py     # Solver convergence & force output verification
-├── analysis_results.png       # Generated rotor profile & pin force comparison plot
-├── conftest.py                # Pytest configuration file
-├── README.md                  # Project overview and instructions
-├── requirements.txt           # Python dependency requirements
-└── run_analysis.py            # Main entry point and performance profiler
+│   ├── geometry.py         # Profile coordinate parametric equations
+│   ├── kinematics.py       # 1D root-finder and pin force distribution solvers
+│   ├── hertzian.py         # Closed-form Hertzian line contact stress
+│   └── friction.py         # Frictional power loss and performance estimates
+├── tests/                  # Automated unit test suite
+│   ├── test_geometry.py    # Geometry bounds and undercutting assertions
+│   └── test_kinematics.py  # Solver convergence and force output verification
+├── analysis_results.png    # Generated rotor profile and pin force comparison
+├── conftest.py             # Pytest configuration file
+├── README.md               # Project overview and instructions
+├── requirements.txt        # Python dependency requirements
+└── run_analysis.py         # Main entry point and performance profiler
 ```
