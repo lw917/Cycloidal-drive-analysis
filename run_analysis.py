@@ -19,7 +19,7 @@ def run_full_analysis() -> None:
     pitch_r = 0.053/2  # 53 mm pitch radius
     pin_r = 0.0015  # 3 mm pin diameter
     ecc = 0.00075  # 0.75 mm eccentricity
-    torque = 0.7  # 1.2 N*m torque load
+    torque = 1.2  # 1.2 N*m torque load
     disc_thickness = 0.004  # 4 mm disc thickness
 
     coefficient_of_friction = 0.1
@@ -57,17 +57,6 @@ def run_full_analysis() -> None:
     print(f"Estimated output torque: {performance['estimated_output_torque_nm']:.2f} N*m") 
     print(f"Estimated efficiency: {performance['estimated_efficiency'] * 100:.2f}%") 
     print("Note: Friction results use assumed values and are not validated.")
-
-    print(
-        f"Proposed Non-Linear Solver Execution Time: {t_proposed:.4f} ms"
-    )
-    print(
-        f"Baseline Uniform Solver Execution Time:    {t_baseline:.4f} ms"
-    )
-    print(f"Peak Pin Force (Proposed):                  {max_force_prop:.2f} N")
-    print(
-        f"Peak Hertzian Contact Stress:              {peak_stress / 1e6:.2f} MPa"
-    )
 
     # 4. Results Visualization Plot
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
